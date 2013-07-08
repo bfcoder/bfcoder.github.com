@@ -23,12 +23,17 @@ body {
   left: 2000px;
 }
 
+.animal_image {
+  position: absolute;
+  padding: .5em;
+}
+
 .north_america {
-  top: 300px;
+  top: 242px;
 }
 
 .south_america {
-  top: 570px;
+  top: 530px;
 }
 
 .africa {
@@ -49,4 +54,14 @@ body {
 
 .antartica {
   top: 860px;
+}
+
+.leopard_seal {
+  top: 596px;
+  left: 672px;
+}
+
+.shark {
+  top: 435px;
+  left: 1158px;
 }

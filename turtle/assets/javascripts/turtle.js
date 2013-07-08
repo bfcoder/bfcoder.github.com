@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var left_position = {
-    north_america: 345,
-    south_america: 508,
+    north_america: 333,
+    south_america: 430,
     africa: 880,
     europe: 880,
     asia: 1240,
