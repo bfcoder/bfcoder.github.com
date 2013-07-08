@@ -20,11 +20,7 @@ body {
   position: absolute;
   width: 4em;
   padding: .5em;
-  right: -1000px;
-}
-
-.wording img {
-  width: 100px;
+  left: 2000px;
 }
 
 .north_america {
@@ -36,21 +32,21 @@ body {
 }
 
 .africa {
-  top: 450px;
+  top: 425px;
 }
 
 .europe {
-  top: 265px;
+  top: 240px;
 }
 
 .asia {
-  top: 300px;
+  top: 270px;
 }
 
 .australia {
-  top: 680px;
+  top: 650px;
 }
 
 .antartica {
-  top: 880px;
+  top: 860px;
 }
