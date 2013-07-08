@@ -1,17 +1,17 @@
 $(document).ready(function() {
-  var left_position = {
-    north_america: 333,
-    south_america: 430,
-    africa: 880,
-    europe: 880,
-    asia: 1240,
+  var position = {
     australia: 1410,
-    antartica: 800
+    asia: 1240,
+    europe: 880,
+    africa: 880,
+    antartica: 800,
+    north_america: 333,
+    south_america: 430
   }
 
   var index = 0;
   var duration = 1250;
-  $.each(left_position, function(key, value){
+  $.each(position, function(key, value){
     index++;
 
     setTimeout(function(){
@@ -20,7 +20,7 @@ $(document).ready(function() {
         duration: duration,
         easing: 'easeInOutElastic'
       });
-    }, duration * index);
+    }, duration * index + 300);
 
   });
 

@@ -20,7 +20,7 @@ body {
   position: absolute;
   width: 4em;
   padding: .5em;
-  left: 2000px;
+  left: -500px;
 }
 
 .animal_image {
