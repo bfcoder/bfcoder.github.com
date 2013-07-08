@@ -1,0 +1,56 @@
+body {
+  width: 100%;
+  position: relative;
+  margin: 0px;
+  overflow: scroll;
+}
+
+.world {
+  position: absolute;
+}
+
+.wording-left {
+  position: absolute;
+  width: 4em;
+  padding: .5em;
+  left: -500px;
+}
+
+.wording-right {
+  position: absolute;
+  width: 4em;
+  padding: .5em;
+  right: -1000px;
+}
+
+.wording img {
+  width: 100px;
+}
+
+.north_america {
+  top: 300px;
+}
+
+.south_america {
+  top: 570px;
+}
+
+.africa {
+  top: 450px;
+}
+
+.europe {
+  top: 265px;
+}
+
+.asia {
+  top: 300px;
+}
+
+.australia {
+  top: 680px;
+}
+
+.antartica {
+  top: 880px;
+}
