@@ -10,7 +10,7 @@ $(document).ready(function() {
   }
 
   var index = 0;
-  var duration = 50;
+  var duration = 1250;
   var total_duration = 0;
   $.each(word_position, function(key, value){
     index++;
@@ -28,42 +28,62 @@ $(document).ready(function() {
   });
 
   setTimeout(function(){
-    doSomething();
+    popIn({animal: "shark", duration: 27});
   }, total_duration);
 
-  var doSomething = function() {
-    $('.shark').animate({ opacity: 1 }, {
+  var popIn = function(params) {
+    $('.'+params.animal).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.35)');
+      }, duration: params.duration * 0.5
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.45)');
+      }, duration: params.duration * 0.5
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.55)');
+      }, duration: params.duration * 0.5
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.65)');
+      }, duration: params.duration * 0.5
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.70)');
+      }, duration: params.duration
+    }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.75)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.8)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.85)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.9)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.95)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.9)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.85)');
-      }, duration: 27
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.8)');
-      }, duration: 27
+      }, duration: params.duration
     });
   };
 
