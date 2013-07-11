@@ -31,9 +31,13 @@ $(document).ready(function() {
   setTimeout(function(){
     // $('#audio1').trigger('play');
     $.when(popIn({animal: "shark", duration: 10})).done(function() {
-      $.when(popIn({animal: "green_sea_turtle", duration: 10})).done(function() {
-        popIn({animal: "leopard_seal", duration: 10});
-      });
+      setTimeout(function(){
+        $.when(popIn({animal: "green_sea_turtle", duration: 10})).done(function() {
+          setTimeout(function() {
+            popIn({animal: "leopard_seal", duration: 10});
+          }, 200);
+        });
+      }, 200);
     });
   }, total_duration);
 
@@ -118,7 +122,7 @@ $(document).ready(function() {
     });
   };
 
-  $('.animal_image').on('click touchend', function() {
+  $('.animal_image').on('click', function() {
     $('.'+$(this).data('type')+'_fact').fadeToggle("slow");
   });
 
