@@ -11,6 +11,7 @@ $(document).ready(function() {
 
   var index = 0;
   var duration = 1250;
+  // var duration = 50;
   var total_duration = 0;
   $.each(word_position, function(key, value){
     index++;
@@ -28,26 +29,43 @@ $(document).ready(function() {
   });
 
   setTimeout(function(){
-    popIn({animal: "shark", duration: 27});
+    $('#audio1').trigger('play');
+    popIn({animal: "shark", duration: 10});
   }, total_duration);
 
   var popIn = function(params) {
     $('.'+params.animal).animate({ opacity: 1 }, {
       step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0)');
+      }, duration: params.duration
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.05)');
+      }, duration: params.duration
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.15)');
+      }, duration: params.duration
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.25)');
+      }, duration: params.duration
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.35)');
-      }, duration: params.duration * 0.5
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.45)');
-      }, duration: params.duration * 0.5
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.55)');
-      }, duration: params.duration * 0.5
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.65)');
-      }, duration: params.duration * 0.5
+      }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.70)');
@@ -74,16 +92,24 @@ $(document).ready(function() {
       }, duration: params.duration
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
-        $(this).css('-webkit-transform','scale(0.9)');
+        $(this).css('-webkit-transform','scale(1)');
       }, duration: params.duration
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.95)');
+      }, duration: params.duration * 0.25
+    }).animate({ opacity: 1 }, {
+      step: function(now, fx) {
+        $(this).css('-webkit-transform','scale(0.9)');
+      }, duration: params.duration * 0.25
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.85)');
-      }, duration: params.duration
+      }, duration: params.duration * 0.25
     }).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0.8)');
-      }, duration: params.duration
+      }, duration: params.duration * 0.25
     });
   };
 

@@ -67,3 +67,7 @@ body {
   left: 1158px;
   opacity: 0;
 }
+
+#audio1 {
+  display: none;
+}
