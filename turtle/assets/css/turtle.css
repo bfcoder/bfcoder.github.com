@@ -59,9 +59,11 @@ body {
 .leopard_seal {
   top: 596px;
   left: 672px;
+  display: none;
 }
 
 .shark {
   top: 435px;
   left: 1158px;
+  opacity: 0;
 }
