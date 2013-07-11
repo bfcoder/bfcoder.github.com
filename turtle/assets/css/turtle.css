@@ -28,6 +28,11 @@ body {
   padding: .5em;
 }
 
+.fact_image {
+  position: absolute;
+  padding: .5em;
+}
+
 .north_america {
   top: 242px;
 }
@@ -60,12 +65,39 @@ body {
   top: 596px;
   left: 672px;
   display: none;
+  opacity: 0;
+}
+
+.leopard_seal_fact {
+  top: 418px;
+  left: 589px;
+  display: none;
 }
 
 .shark {
   top: 435px;
   left: 1158px;
+  display: none;
   opacity: 0;
+}
+
+.shark_fact {
+  top: 260px;
+  left: 1180px;
+  display: none;
+}
+
+.green_sea_turtle {
+  top: 330px;
+  left: 470px;
+  display: none;
+  opacity: 0;
+}
+
+.green_sea_turtle_fact {
+  top: 135px;
+  left: 470px;
+  display: none;
 }
 
 #audio1 {

@@ -29,12 +29,17 @@ $(document).ready(function() {
   });
 
   setTimeout(function(){
-    $('#audio1').trigger('play');
-    popIn({animal: "shark", duration: 10});
+    // $('#audio1').trigger('play');
+    $.when(popIn({animal: "shark", duration: 10})).done(function() {
+      $.when(popIn({animal: "green_sea_turtle", duration: 10})).done(function() {
+        popIn({animal: "leopard_seal", duration: 10});
+      });
+    });
   }, total_duration);
 
   var popIn = function(params) {
-    $('.'+params.animal).animate({ opacity: 1 }, {
+    $('.'+params.animal).show();
+    return $('.'+params.animal).animate({ opacity: 1 }, {
       step: function(now, fx) {
         $(this).css('-webkit-transform','scale(0)');
       }, duration: params.duration
@@ -112,5 +117,9 @@ $(document).ready(function() {
       }, duration: params.duration * 0.25
     });
   };
+
+  $('.animal_image').on('click touchend', function() {
+    $('.'+$(this).data('type')+'_fact').fadeToggle("slow");
+  });
 
 });
