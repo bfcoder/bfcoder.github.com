@@ -34,15 +34,15 @@ body {
 }
 
 .north_america {
-  top: 242px;
+  top: 266px;
 }
 
 .south_america {
-  top: 530px;
+  top: 542px;
 }
 
 .africa {
-  top: 425px;
+  top: 438px;
 }
 
 .europe {
@@ -54,52 +54,52 @@ body {
 }
 
 .australia {
-  top: 650px;
+  top: 662px;
 }
 
-.antartica {
-  top: 860px;
+.antarctica {
+  top: 884px;
 }
 
 .leopard_seal {
-  top: 596px;
-  left: 672px;
+  top: 686px;
+  left: 793px;
   display: none;
   opacity: 0;
 }
 
 .leopard_seal_fact {
-  top: 418px;
-  left: 589px;
+  top: 481px;
+  left: 707px;
   display: none;
 }
 
 .shark {
-  top: 435px;
-  left: 1158px;
+  top: 492px;
+  left: 1182px;
   display: none;
   opacity: 0;
 }
 
 .shark_fact {
-  top: 260px;
-  left: 1180px;
+  top: 302px;
+  left: 1275px;
   display: none;
 }
 
 .green_sea_turtle {
-  top: 330px;
-  left: 470px;
+  top: 296px;
+  left: 554px;
   display: none;
   opacity: 0;
 }
 
 .green_sea_turtle_fact {
-  top: 135px;
-  left: 470px;
+  top: 106px;
+  left: 552px;
   display: none;
 }
 
-#audio1 {
+.audio {
   display: none;
 }
