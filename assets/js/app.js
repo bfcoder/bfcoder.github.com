@@ -4,6 +4,7 @@ App.Router.map(function() {
   this.route('about');
   this.route('projects');
   this.route('photos');
+  this.route('liz');
 });
 
 App.IndexRoute = Ember.Route.extend({
