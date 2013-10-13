@@ -8,26 +8,30 @@ App.Router.map(function() {
 });
 
 App.IndexRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('title', "The bfcoder");
+  setupController: function(controller, model) {
+    controller.set('model', model);
+    document.title = 'The bfcoder';
   }
 });
 
 App.AboutRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('title', "The bfcoder: About me");
+  setupController: function(controller, model) {
+    controller.set('model', model);
+    document.title = 'The bfcoder: About me';
   }
 });
 
 App.ProjectsRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('title', "The bfcoder: Projects");
+  setupController: function(controller, model) {
+    controller.set('model', model);
+    document.title = 'The bfcoder: Projects';
   }
 });
 
 App.PhotosRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('title', "The bfcoder: Photos");
+  setupController: function(controller, model) {
+    controller.set('model', model);
+    document.title = 'The bfcoder: Photos';
   }
 });
 
