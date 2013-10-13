@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>The bfcoder</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Just a little about myself, bfcoder.">
-    <meta name="author" content="James Carbine">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Just a little about myself, bfcoder.">
+  <meta name="author" content="James Carbine">
+  <title>The bfcoder</title>
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css">
 
-    <!-- Le styles -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-  </head>
-
-  <body>
-
+  <script type="text/x-handlebars">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -34,13 +27,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">bfcoder</a>
+          {{#linkTo 'index' class='brand'}}bfcoder{{/linkTo}}
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about/">About me</a></li>
-              <li><a href="/projects/">Projects</a></li>
-              <li><a href="/photos/">Photos</a></li>
+              {{#view App.NavView}}
+                {{#linkTo 'index'}}Home{{/linkTo}}
+              {{/view}}
+              {{#view App.NavView}}
+                {{#linkTo 'about'}}About me{{/linkTo}}
+              {{/view}}
+              {{#view App.NavView}}
+                {{#linkTo 'projects'}}Projects{{/linkTo}}
+              {{/view}}
+              {{#view App.NavView}}
+                {{#linkTo 'photos'}}Photos{{/linkTo}}
+              {{/view}}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -56,41 +57,137 @@
 
     <div class="container">
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Hi, Mom!</h1>
-        <p>I am bfcoder. aka James Carbine</p>
-        <p><a href="/about/" class="btn btn-primary btn-large">About me &raquo;</a></p>
-      </div>
+      {{outlet}}
 
       <hr>
 
       <footer>
-        <! -- Twitter -->
+        <!-- Twitter -->
         <p>
-          <a href="https://twitter.com/bfcoder" class="twitter-follow-button" data-show-count="false">Follow @bfcoder</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <a href="https://twitter.com/bfcoder" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @bfcoder</a>
+          {{view App.TwitterWidgetView}}
         </p>
-        <! -- End Twitter -->
+        <!-- End Twitter -->
 
-        <! -- Linkedin -->
+        <!-- Linkedin -->
         <p>
           <a href="http://www.linkedin.com/pub/james-carbine/b/74/628">
-            <img src="http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png" width="80" height="15" border="0" alt="View James Carbine's profile on LinkedIn">
+            <img src="http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png" width="80" height="15" alt="View James Carbine's profile on LinkedIn">
           </a>
         </p>
-        <! -- End Linkedin -->
+        <!-- End Linkedin -->
 
         <p>&copy; bfcoder 2013</p>
       </footer>
 
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
 
-  </body>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      <h1>Hi, Mom!</h1>
+      <p>I am bfcoder. aka James Carbine</p>
+      <p>{{#linkTo 'about' class='btn btn-primary btn-large'}}About me &raquo;{{/linkTo}}</p>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about">
+    <div class="row-fluid">
+      <div class="span6">
+        <h4>Profession</h4>
+        <p>I am a software developer. I write code for <a target="_blank" href='http://www.tatemae.com/'>Tatemae</a>. Here are some of the projects I have done: {{#linkTo 'projects'}}Projects{{/linkTo}}.</p>
+
+        <h4>Experience</h4>
+        <p>I have become an experienced <a target="_blank" href='http://rubyonrails.org/'>Ruby on Rails</a> developer.</p>
+        <p><a href='http://yuiblog.com/crockford/'>Javascript</a> (including <a target="_blank" href='http://jquery.com/'>jQuery</a>, <a target="_blank" href='http://coffeescript.org/'>CoffeeScript</a>, and <a target="_blank" href='http://emberjs.com/'>Ember.js</a>)</p>
+        <p><a href='http://www.html5rocks.com/'>HTML5</a></p>
+        <p>C#</p>
+        <p>C++</p>
+      </div>
+
+      <div class="span6">
+        <h4>Education</h4>
+        <p>I studied Computer Science at Utah State University in Logan, Utah. I graduated with a BS in Computer Science in May 2013. </p>
+
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="projects">
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      <h1>My Projects</h1>
+      <p>Here are the projects I have been involved with.</p>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="span4">
+        <h2>Open Tapestry</h2>
+        <p>Finding open educational resources and clipping them for others to see and use.</p>
+        <p><a target="_blank" class="btn" href="http://www.opentapestry.com/">Check it out &raquo;</a></p>
+      </div>
+      <div class="span4">
+        <h2>Hacking Instructure's Canvas</h2>
+        <p>I took Instructures Canvas and modified it for the EDC Maine EM2 Project.</p>
+        <p><a target="_blank" class="btn" href="http://maine.edc.org/file.php/1/em2/em2.html">View details &raquo;</a></p>
+      </div>
+      <div class="span4">
+        <h2>Saylor.org</h2>
+        <p>Online free educational institution called <a target="_blank" href="http://www.saylor.org/">Saylor.org</a>. I helped develop the <a target="_blank" href="http://eportfolio.saylor.org/"> ePortfolio</a> for the site.</p>
+        <p>Check it out if you want some free education. Very cool.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <h2>Matti</h2>
+        <p>Creating some interactive modules to teach students about graph theory.</p>
+      </div>
+      <div class="span4">
+        <h2>Octopi</h2>
+        <p>Another project that wanted canvas modified for use in an adaptive math testing environment. I made the system work, however the guy never got the funding to complete it.</p>
+      </div>
+    </div>
+    <h1>School Projects</h1>
+    <div class="row">
+      <div class="span4">
+        <h2>CS5460 Final Project</h2>
+        <p>My CS5460 Computer Securities final project for authenticating a user.</p>
+        <p><a target="_blank" class="btn" href="http://finalproject.bfcoder.com/">Check it out &raquo;</a></p>
+      </div>
+      <div class="span4">
+        <h2>CS5100 HTML5 Project</h2>
+        <p>Made a site with Scott Biery that highlighted HTML5 and gave some examples. I wrote the two HTML5 canvas examples and Scott formatted the site and put together the HTML5 examples page. It was a lot of fun to write the javascript for this project. And yes, it works with an iPad. :]</p>
+        <p><a target="_blank" class="btn" href="http://www.ninjascott.com/CS5100/about-html5.php">Check it out &raquo;</a></p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="photos">
+  <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      <h1>Photos</h1>
+      <p>Enjoy</p>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="span4">
+        <h2>Eagle</h2>
+        <p><img src='assets/images/bald-eagle_1_600x450.jpeg' alt="Bald Eagle" style="postion:absolute;" /></p>
+        <p><a class="btn" href="assets/images/bald-eagle_1_600x450.jpeg">View &raquo;</a></p>
+      </div>
+    </div>
+  </script>
+
+  <script src="assets/js/libs/jquery-1.9.1.js"></script>
+  <script src="assets/js/libs/bootstrap.min.js"></script>
+  <script src="assets/js/libs/handlebars-1.0.0.js"></script>
+  <script src="assets/js/libs/ember-1.0.0.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
 </html>
