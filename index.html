@@ -7,9 +7,9 @@
   <meta name="author" content="James Carbine">
   <title>The bfcoder</title>
   <link rel="stylesheet" href="assets/css/normalize.css">
-  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -19,14 +19,15 @@
 <body>
 
   <script type="text/x-handlebars">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </a>
           {{#linkTo 'index' class='brand'}}bfcoder{{/linkTo}}
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -55,7 +56,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
 
       {{outlet}}
 
@@ -87,7 +88,7 @@
 
   <script type="text/x-handlebars" data-template-name="index">
     <div class="hero-unit">
-      <h1>Hi, Mom!</h1>
+      <h1>Hi Mom!</h1>
       <p>I am bfcoder. aka James Carbine</p>
       <p>{{#linkTo 'about' class='btn btn-primary btn-large'}}About me &raquo;{{/linkTo}}</p>
     </div>
@@ -95,23 +96,33 @@
 
   <script type="text/x-handlebars" data-template-name="about">
     <div class="row-fluid">
-      <div class="span6">
+      <div class="span6 well">
         <h4>Profession</h4>
         <p>I am a software developer. I write code for <a target="_blank" href='http://www.tatemae.com/'>Tatemae</a>. I started working for Tatemae on November 23, 2011. Prior to that I worked for the Sam's Club Pharmacy as a Pharmacy Technician for 6 years while I studied Computer Science at USU. Here are some of the projects I have done: {{#linkTo 'projects'}}Projects{{/linkTo}}.</p>
-
-        <h4>Experience</h4>
-        <p>I have become an experienced <a target="_blank" href='http://rubyonrails.org/'>Ruby on Rails</a> developer.</p>
-        <p><a href='http://yuiblog.com/crockford/'>Javascript</a> (including <a target="_blank" href='http://jquery.com/'>jQuery</a>, <a target="_blank" href='http://coffeescript.org/'>CoffeeScript</a>, and <a target="_blank" href='http://emberjs.com/'>Ember.js</a>)</p>
-        <p><a href='http://www.html5rocks.com/'>HTML5</a></p>
-        <p>C#</p>
-        <p>C++</p>
       </div>
-
-      <div class="span6">
+      <div class="span6 well">
         <h4>Education</h4>
         <p>I studied Computer Science at Utah State University in Logan, Utah. I graduated with a BS in Computer Science in May 2013. </p>
 
       </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6 well">
+
+        <h4>Experience</h4>
+        <p>I have become an experienced <a target="_blank" href="http://rubyonrails.org/">Ruby on Rails</a> developer.</p>
+        <p><a href="http://yuiblog.com/crockford/">Javascript</a> (including <a target="_blank" href="http://jquery.com/">jQuery</a>, <a target="_blank" href="http://emberjs.com/">Ember.js</a>, <a target="_blank" href="http://coffeescript.org/">CoffeeScript</a>, and <a target="_blank" href="http://nodejs.org/">Node.js</a>)</p>
+        <p><a target="_blank" href="http://www.html5rocks.com/">HTML5</a></p>
+        <p><a target="_blank" href="http://www.iron.io/">Iron.io</a></p>
+        <p>C#</p>
+        <p>C++</p>
+      </div>
+
+      <div class="span6 well">
+        <h4>Barefeet</h4>
+        <p>Yes indeed, I am a barefoot advocate. I started going barefoot about 4 years ago. I wear shoes on very few occasions, and not for long when I do. When I ride my motorcycle, I wear shoes. When I'm working with the horses, I wear shoes. When I'm working with power tools/machinery(lawn mower), I wear shoes. But pretty much other than that, I have nixed shoes. I especially dislike shoes with a heal. My wife owns no high heals. Period. I hiked all over Moab and Arches National Park while being barefoot. I've done 5 mile hikes through the mountains barefoot. I love beaing barefoot. I believe my body has strengthened itself since going barefoot. Backpains have gone, unless of course I have done something to incite pain. Like sleeping on a rock in the middle of my back I'm sure would incite pain. Barefeet FTW!</p>
+      </div>
+
     </div>
   </script>
 
@@ -121,20 +132,20 @@
       <p>Here are the projects I have been involved with.</p>
     </div>
 
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>Open Tapestry</h2>
         <p>Finding open educational resources and clipping them for others to see and use. This web app allows teachers to gather open educational resources from about the web, and place them into tapestries for their students to view. Or perhaps make lessons to show the class. Possibilites are numerous. It can also be very useful to corporations wanting to train their employees and give them quizzes to make sure they understand the training. Anyone can build up a course for someone to take.</p>
         <p>Technology: Ruby on Rails, Javascript</p>
         <p><a target="_blank" class="btn" href="http://www.opentapestry.com/">Check it out &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>Hacking Instructure's Canvas</h2>
         <p>I took Instructure's Canvas and modified it for the EDC Maine EM2 Project. It now has the ability to enter misconception probabilities for an assessment. So when the student takes an assessment, it calculates the probability that they have a misconception. It does not show a score to the student or the teacher. The teacher can pull up a report that shows them which students have misconceptions about mathematics. I also encorporated new features into taking an assessment. The student can type in an expanation. They can also draw an explanation as to why they feel the answer they chose is correct.</p>
         <p>Technology: Ruby on Rails, Javascript</p>
         <p><a target="_blank" class="btn" href="http://maine.edc.org/file.php/1/em2/em2.html">View details &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>Saylor.org</h2>
         <p>Online free educational institution called <a target="_blank" href="http://www.saylor.org/">Saylor.org</a>. I helped develop the <a target="_blank" href="http://eportfolio.saylor.org/"> ePortfolio</a> for the site.</p>
         <p>Check it out if you want some free education. Very cool.</p>
@@ -142,51 +153,51 @@
         <p><a target="_blank" class="btn" href="http://eportfolio.saylor.org/">Check it out &raquo;</a></p>
       </div>
     </div>
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>Matti - graph theory</h2>
         <p>Created some interactive modules to teach students about graph theory. This included Euler Circuits, Minimum Spanning Tree - Kruskal's Algorithm, and Map Coloring. The modules are included with this book &QUOT;<a target="_blank" href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002457.html">The Heart of Mathematics: An Invitation to Effective Thinking, 4th Edition</a>.&QUOT;</p>
         <p>Technology: HTML5, Javascript (KineticJS)</p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>Matti - Base Blocks</h2>
         <p>Base Blocks had previously been written by my boss <a target="_blank" href="http://www.joelduffin.com/">Joel Duffin</a> however it was written in Java. It can be found on the <a target="_blank" href="http://enlvm.usu.edu/ma/nav/index.jsp">eNLVM</a>: <a target="_blank" href="http://enlvm.usu.edu/ma/nav/activity.jsp?sid=nlvm&cid=4_2&lid=152">Base Blocks</a>. This made it useless to be ran on an iOS device. So I was enlisted to re-write the code in HTML5 so it could be ran on mobile devices as well. I wrote a lot of it and Kami Wilson took over the project so I could focus on other projects.</p>
         <p>Technology: HTML5, Javascript (KineticJS)</p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>Octopi</h2>
         <p>Another project that wanted Instructure's Canvas modified for use in an adaptive math testing environment. I made the system work, however the guy never got the funding to complete it.</p>
         <p>Technology: Ruby on Rails, Javascript</p>
       </div>
     </div>
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>Open Assessments</h2>
         <p>This is a project that we build and was funded by MIT. It is a way for anyone to create online assessments and embed them anywhere on the web. Put them inside Instructure's Canvas, or put them on your blog. Doesn't really matter. After people have taken the assessment, you can view the statistics. It was built with Ruby on Rails. We will switch it over to Ruby on Rails combined with Ember.js eventually.</p>
         <p>Technology: Ruby on Rails, Javascript</p>
         <p><a target="_blank" class="btn" href="http://www.openassessments.com/">Check it out &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>CMAT</h2>
         <p>CMAT stands for Concept Map Authoring Tool. You can build concept maps with it.</p>
         <p>Technology: Ruby on Rails, HTML5, Javascript (KineticJS, Ember)</p>
         <p><a target="_blank" class="btn" href="http://cmat.herokuapp.com/">Check it out &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>OEIT Player</h2>
         <p>I rebuilt the MIT OEIT Player to work with html5 using JW Player 6. If you check it out, go to the bottom left video of Walter Lewin for a good example. I made it so they can easily put new videos together and using data tags set the parameters of the video.</p>
         <p>Technology: HTML5, Javascript, JW Player 6</p>
         <p><a target="_blank" class="btn" href="http://iihs.herokuapp.com/">Check it out &raquo;</a></p>
       </div>
     </div>
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>OEIT Player Authoring</h2>
         <p>I built an authoring interface for MIT to build the html for the players.</p>
         <p>Technology: HTML5, Javascript</p>
         <p><a target="_blank" class="btn" href="http://iihs.herokuapp.com/admin/">Check it out &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>panOpen</h2>
         <p>panOpen is an app that an instructor can create a course with a book. The students can read the book and take quizzes for the chapters. The instructor can view the statistics for each student in the class. Statistics include the time they have spent reading the book and each of their attempts at the quizzes. I also wrote a node app that accepts an image request with user and book id's. It stores that information in Redis. While the student is reading the book, every 15 seconds it sends a request for the image, thus recording that they are reading the book. I then wrote an iron.io task that gets all that data out of Redis and crunches it to compute how long they have been reading for. It then sends that data to rails to store in the database.</p>
         <p>Technology: Ruby on Rails, Javascript (Ember, Node), Iron.io</p>
@@ -194,14 +205,14 @@
       </div>
     </div>
     <h1>School Projects</h1>
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>CS5460 Final Project</h2>
         <p>My CS5460 Computer Securities final project for authenticating a user.</p>
         <p>Technology: Ruby on Rails, Javascript</p>
         <p><a target="_blank" class="btn" href="http://finalproject.bfcoder.com/">Check it out &raquo;</a></p>
       </div>
-      <div class="span4">
+      <div class="span4 well">
         <h2>CS5100 HTML5 Project</h2>
         <p>Made a site with Scott Biery that highlighted HTML5 and gave some examples. I wrote the two HTML5 canvas examples and Scott formatted the site and put together the HTML5 examples page. It was a lot of fun to write the javascript for this project. And yes, it works with an iPad. :]</p>
         <p>Technology: HTML5</p>
@@ -209,8 +220,8 @@
       </div>
     </div>
     <h1>Volunteer Projects</h1>
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>The Living Planet Aquarium</h2>
         <p>Currently building a page to highlight a Sea Turtle that has been rescued.</p>
         <p>Technology: HTML5, Javascript</p>
@@ -219,14 +230,14 @@
     </div>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="photos"
+  <script type="text/x-handlebars" data-template-name="photos">
     <div class="hero-unit">
       <h1>Photos</h1>
       <p>Enjoy</p>
     </div>
 
-    <div class="row">
-      <div class="span4">
+    <div class="row-fluid">
+      <div class="span4 well">
         <h2>Eagle</h2>
         <p><img src='assets/images/bald-eagle_1_600x450.jpeg' alt="Bald Eagle" style="postion:absolute;" /></p>
         <p><a class="btn" href="assets/images/bald-eagle_1_600x450.jpeg">View &raquo;</a></p>
