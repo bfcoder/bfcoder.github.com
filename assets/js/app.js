@@ -5,7 +5,7 @@ App.Router.map(function() {
   this.route('projects');
   this.route('photos');
   this.route('liz');
-  this.route('johnson_reunion_2013');
+  this.route('busby_reunion_2013');
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -36,10 +36,10 @@ App.PhotosRoute = Ember.Route.extend({
   }
 });
 
-App.JohnsonReunion2013Route = Ember.Route.extend({
+App.BusbyReunion2013Route = Ember.Route.extend({
   setupController: function(controller, model) {
     controller.set('model', model);
-    document.title = 'The 2013 Johnson Reunion';
+    document.title = 'The 2013 Busby Reunion';
   }
 });
 
