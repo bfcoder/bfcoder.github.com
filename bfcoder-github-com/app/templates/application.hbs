@@ -14,6 +14,14 @@
       {{#bs-nav-item}}{{#link-to 'index'}}Home{{/link-to}}{{/bs-nav-item}}
       {{#bs-nav-item}}{{#link-to 'about'}}About me{{/link-to}}{{/bs-nav-item}}
       {{#bs-nav-item}}{{#link-to 'projects'}}Projects{{/link-to}}{{/bs-nav-item}}
+
+      {{#bs-dropdown tagName="li"}}
+        {{#bs-dropdown-toggle}}Other <span class="caret"></span>{{/bs-dropdown-toggle}}
+        {{#bs-dropdown-menu}}
+          <li><a target="_blank" href="http://blog.bfcoder.com">Blog</a></li>
+          <li><a target="_blank" href="https://github.com/bfcoder">GitHub</a></li>
+        {{/bs-dropdown-menu}}
+      {{/bs-dropdown}}
     {{/bs-navbar-nav}}
   {{/bs-navbar-content}}
 
