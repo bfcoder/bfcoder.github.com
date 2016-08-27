@@ -1,0 +1,40 @@
+---
+ecmaFeatures:
+  modules: true
+env:
+  browser: true
+  es6: true
+parser: babel-eslint
+rules:
+  camelcase: 0
+  comma-dangle: 0
+  global-strict:
+    - 0
+    - never
+  indent:
+    - 2
+    - 2
+    -
+      SwitchCase: 1
+  linebreak-style:
+    - 2
+    - unix
+  no-multi-spaces:
+    - 2
+    -
+      exceptions:
+        AssignmentPattern: true
+        ImportDeclaration: true
+        VariableDeclarator: true
+        AssignmentExpression: true
+  no-underscore-dangle: 0
+  no-unused-vars: 1
+  quotes: 0
+  semi:
+    - 2
+    - always
+  strict:
+    - 0
+    - global
+  eol-last: 1 # end of file newline
+  no-trailing-spaces: 1
