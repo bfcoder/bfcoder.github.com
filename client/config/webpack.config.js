@@ -6,7 +6,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const AssetsPlugin         = require('assets-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const HtmlBuilderPlugin    = require('../libs/plugins/html_builder');
-const FlowCompilerPlugin   = require('../libs/plugins/flow_compiler');
 const _                    = require('lodash');
 
 //
@@ -115,7 +114,6 @@ module.exports = function webpackConfig(app, options = {}) {
     plugins = _.concat(plugins, [
       new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', __DEV__: true }),
       new FriendlyErrorsPlugin({ clearConsole: false }),
-      new FlowCompilerPlugin(app),
     ]);
   }
 
