@@ -1,8 +1,8 @@
 "use strict";
 
-import Ember from "ember";
+import Component from "@ember/component";
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     let script = document.createElement('script');
     script.type = 'text/javascript';
