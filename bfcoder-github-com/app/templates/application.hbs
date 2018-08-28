@@ -1,4 +1,4 @@
-{{#bs-navbar type='dark' backgroundColor='dark' position='fixed-top' onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
+{{#bs-navbar type='dark' backgroundColor='dark' position='sticky-top' onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
 
   {{navbar.toggle}}
   {{#link-to 'index' class='navbar-brand'}}bfcoder{{/link-to}}
