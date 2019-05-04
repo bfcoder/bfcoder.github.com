@@ -1,12 +1,12 @@
-{{#bs-navbar type='dark' backgroundColor='dark' position='sticky-top' onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
+{{#bs-navbar type="dark" backgroundColor="dark" position="sticky-top" onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
 
   {{navbar.toggle}}
-  {{#link-to 'index' class='navbar-brand'}}bfcoder{{/link-to}}
+  {{#link-to "index" class="navbar-brand"}}bfcoder{{/link-to}}
 
   {{#navbar.content}}
     {{#navbar.nav as |nav|}}
-      {{#nav.item}}{{#nav.link-to 'index'}}About{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to 'projects'}}Projects{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "index"}}About{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "projects"}}Projects{{/nav.link-to}}{{/nav.item}}
 
       {{#nav.dropdown as |dd|}}
         {{#dd.toggle}}Other <span class="caret"></span>{{/dd.toggle}}
@@ -20,7 +20,7 @@
 
 {{/bs-navbar}}
 
-<main role='main'>
+<main role="main">
 
   {{outlet}}
 
