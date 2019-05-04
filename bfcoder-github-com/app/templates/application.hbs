@@ -11,8 +11,8 @@
       {{#nav.dropdown as |dd|}}
         {{#dd.toggle}}Other <span class="caret"></span>{{/dd.toggle}}
         {{#dd.menu as |ddm|}}
-          {{#ddm.item}}<a target="_blank" class="dropdown-item" href="http://blog.bfcoder.com">Blog</a>{{/ddm.item}}
-          {{#ddm.item}}<a target="_blank" class="dropdown-item" href="https://github.com/bfcoder">GitHub</a>{{/ddm.item}}
+          {{#ddm.item}}<a target="_blank" rel="noopener" class="dropdown-item" href="http://blog.bfcoder.com">Blog</a>{{/ddm.item}}
+          {{#ddm.item}}<a target="_blank" rel="noopener" class="dropdown-item" href="https://github.com/bfcoder">GitHub</a>{{/ddm.item}}
         {{/dd.menu}}
       {{/nav.dropdown}}
     {{/navbar.nav}}
