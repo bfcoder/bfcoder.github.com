@@ -1,24 +1,24 @@
-{{#bs-navbar type="dark" backgroundColor="dark" position="sticky-top" onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
+<BsNavbar @type="dark" @backgroundColor="dark" @position="sticky-top" @onCollapse={{action (mut collapsed) true}} @onExpand={{action (mut collapsed) false}} as |navbar|>
 
   {{navbar.toggle}}
-  {{#link-to "index" class="navbar-brand"}}bfcoder{{/link-to}}
+  <LinkTo @route="index" class="navbar-brand">bfcoder</LinkTo>
 
-  {{#navbar.content}}
-    {{#navbar.nav as |nav|}}
-      {{#nav.item}}{{#nav.link-to "index"}}About{{/nav.link-to}}{{/nav.item}}
-      {{#nav.item}}{{#nav.link-to "projects"}}Projects{{/nav.link-to}}{{/nav.item}}
+  <navbar.content>
+    <navbar.nav as |nav|>
+      <nav.item><nav.link-to @route="index">About</nav.link-to></nav.item>
+      <nav.item><nav.link-to @route="projects">Projects</nav.link-to></nav.item>
 
-      {{#nav.dropdown as |dd|}}
-        {{#dd.toggle}}Other <span class="caret"></span>{{/dd.toggle}}
-        {{#dd.menu as |ddm|}}
-          {{#ddm.item}}<a target="_blank" rel="noopener" class="dropdown-item" href="http://blog.bfcoder.com">Blog</a>{{/ddm.item}}
-          {{#ddm.item}}<a target="_blank" rel="noopener" class="dropdown-item" href="https://github.com/bfcoder">GitHub</a>{{/ddm.item}}
-        {{/dd.menu}}
-      {{/nav.dropdown}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
+      <nav.dropdown as |dd|>
+        <dd.toggle>Other <span class="caret"></span></dd.toggle>
+        <dd.menu as |ddm|>
+          <ddm.item><a target="_blank" rel="noopener" class="dropdown-item" href="http://blog.bfcoder.com">Blog</a></ddm.item>
+          <ddm.item><a target="_blank" rel="noopener" class="dropdown-item" href="https://github.com/bfcoder">GitHub</a></ddm.item>
+        </dd.menu>
+      </nav.dropdown>
+    </navbar.nav>
+  </navbar.content>
 
-{{/bs-navbar}}
+</BsNavbar>
 
 <main role="main">
 
