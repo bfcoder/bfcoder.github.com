@@ -1,0 +1,96 @@
+---
+import '../sass/app.scss';
+
+interface Props {
+  title: string;
+}
+
+const {
+  title,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, import.meta.env.SITE).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalUrl}/>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+
+        <a href="/" class="navbar-brand">bfcoder</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="projects">Projects</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <ul class="dropdown-menu">
+                <li><a target="_blank" rel="noopener" class="dropdown-item" href="https://blog.bfcoder.com">Blog</a></li>
+                <li><a target="_blank" rel="noopener" class="dropdown-item" href="https://github.com/bfcoder">GitHub</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+
+    <main role="main">
+
+      <slot />
+
+      <hr>
+
+      <footer class="mx-3">
+        <!-- Stack Overflow -->
+        <p>
+          <a href="https://stackoverflow.com/users/1477165/bfcoder">
+            <img src="https://stackoverflow.com/users/flair/1477165.png?theme=dark" width="208" height="58" alt="profile for bfcoder at Stack Overflow, Q&A for professional and enthusiast programmers" title="profile for bfcoder at Stack Overflow, Q&A for professional and enthusiast programmers">
+          </a>
+        </p>
+        <!-- End Stack Overflow -->
+
+        <!-- Twitter -->
+        <p>
+          <a href="https://twitter.com/bfcoder?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @bfcoder</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </p>
+        <!-- End Twitter -->
+
+        <!-- Badges -->
+        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1b4bcd34-fa40-4b8d-9000-1fa8ad1ae5a2"></div><script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
+        <!-- End Badges -->
+
+        <p>&copy; bfcoder 2025</p>
+      </footer>
+
+    </main> <!-- /main -->
+
+  </body>
+</html>
+
+<script>
+  import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+</script>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string
+  main_class: string
+}
+const { title, main_class } = Astro.props
+---
+
+<div class={`card ${main_class}`}>
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">{title}</h4>
+  </div>
+  <div class="card-body text-left">
+    <slot />
+  </div>
+</div>
