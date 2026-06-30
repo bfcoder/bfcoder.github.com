@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
+    "@astrojs/check": "^0.9.9",
     "astro": "^7.0.4",
     "bootstrap": "^5.3.8",
     "sass": "^1.99.0",
