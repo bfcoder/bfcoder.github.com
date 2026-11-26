@@ -1,9 +1,227 @@
 @import "bootstrap/dist/css/bootstrap.css";
 
-.sub-nav {
-  top: 56px;
+// Theme: Neo-Brutalist
+// Loud yellow, thick black outlines, hard offset shadows, chunky grotesk type
+// and a card grid instead of a single column.
+
+$yellow: #ffde59;
+$black: #111111;
+$white: #ffffff;
+$pink: #ff6b9d;
+$cyan: #4dd8e6;
+$lime: #a3e635;
+
+:root {
+  --bs-body-bg: #{$yellow};
+  --bs-body-color: #{$black};
+  --bs-body-font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --bs-body-font-weight: 500;
+  --bs-dark-rgb: 17, 17, 17;
+  --bs-link-color-rgb: 17, 17, 17;
+  --bs-link-hover-color-rgb: 17, 17, 17;
+  --bs-border-color: #{$black};
+  --bs-emphasis-color: #{$black};
 }
 
-.top-container {
-  margin-top: 30px;
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+
+  &:hover {
+    background: $pink;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+// Navigation
+.navbar.navbar-dark {
+  --bs-navbar-color: #{$white};
+  --bs-navbar-hover-color: #{$yellow};
+  --bs-navbar-active-color: #{$yellow};
+  --bs-navbar-brand-color: #{$yellow};
+  --bs-navbar-brand-hover-color: #{$yellow};
+
+  .nav-link {
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+.navbar-brand {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+.sub-nav {
+  top: 56px;
+
+  &.navbar.navbar-dark {
+    background-color: $pink !important;
+    border-block: 3px solid $black;
+    margin-block: 2rem 0;
+  }
+
+  .navbar-brand {
+    color: $black;
+    font-size: 1.5rem;
+  }
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #{$white};
+  --bs-dropdown-border-color: #{$black};
+  --bs-dropdown-border-width: 3px;
+  --bs-dropdown-border-radius: 0;
+  --bs-dropdown-link-color: #{$black};
+  --bs-dropdown-link-hover-color: #{$black};
+  --bs-dropdown-link-hover-bg: #{$yellow};
+  box-shadow: 5px 5px 0 $black;
+  font-weight: 700;
+}
+
+// Hero
+.text-bg-dark {
+  color: $yellow !important;
+  border-bottom: 3px solid $black;
+}
+
+.display-4 {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 7vw, 5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  color: $white;
+  font-weight: 500;
+}
+
+// Card grid
+main > .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-deck.mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.card {
+  --bs-card-bg: #{$white};
+  --bs-card-border-width: 3px;
+  --bs-card-border-color: #{$black};
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+  --bs-card-cap-bg: #{$cyan};
+  height: 100%;
+  margin-bottom: 0 !important;
+  box-shadow: 8px 8px 0 $black;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 11px 11px 0 $black;
+  }
+}
+
+.card-deck:nth-child(3n + 2) .card {
+  --bs-card-cap-bg: #{$pink};
+}
+
+.card-deck:nth-child(3n + 3) .card {
+  --bs-card-cap-bg: #{$lime};
+}
+
+.card-header {
+  border-bottom: 3px solid $black;
+  text-align: left;
+
+  h4 {
+    font-size: 1.35rem;
+    text-transform: uppercase;
+  }
+}
+
+.card-body {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+
+  li + li {
+    margin-top: 0.6rem;
+  }
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #{$white};
+  --bs-btn-bg: #{$black};
+  --bs-btn-border-color: #{$black};
+  --bs-btn-border-width: 3px;
+  --bs-btn-hover-color: #{$black};
+  --bs-btn-hover-bg: #{$yellow};
+  --bs-btn-hover-border-color: #{$black};
+  --bs-btn-active-color: #{$black};
+  --bs-btn-active-bg: #{$pink};
+  --bs-btn-active-border-color: #{$black};
+  --bs-btn-border-radius: 0;
+  --bs-btn-font-weight: 700;
+  --bs-btn-font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 $black;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 $black;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 $black;
+  }
+}
+
+.btn-light {
+  --bs-btn-bg: #{$yellow};
+  --bs-btn-color: #{$black};
+  --bs-btn-border-color: #{$black};
+  --bs-btn-hover-bg: #{$pink};
+  --bs-btn-hover-color: #{$black};
+  --bs-btn-hover-border-color: #{$black};
+  border: 3px solid $black;
+  border-radius: 0 !important;
+  box-shadow: 5px 5px 0 $white;
+  text-transform: uppercase;
+}
+
+.display-1 {
+  font-size: clamp(6rem, 20vw, 12rem);
+  color: $yellow;
+}
+
+hr {
+  border-top: 3px solid $black;
+  opacity: 1;
+  margin-top: 3rem;
+}
+
+footer {
+  font-weight: 700;
 }
