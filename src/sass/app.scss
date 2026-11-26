@@ -1,7 +1,223 @@
 @import "bootstrap/dist/css/bootstrap.css";
 
+// Theme: Midnight Glass
+// Deep navy with violet/cyan aurora glows, frosted-glass cards, gradient
+// headline text and pill buttons. Cards lay out as a responsive grid.
+
+$night: #0b0b1a;
+$text: #d7d9f0;
+$muted: #9a9cc0;
+$violet: #8b5cf6;
+$cyan: #22d3ee;
+$pink: #f472b6;
+$glass: rgba(255, 255, 255, 0.05);
+$glass-border: rgba(255, 255, 255, 0.1);
+
+:root {
+  --bs-body-bg: #{$night};
+  --bs-body-color: #{$text};
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bs-dark-rgb: 11, 11, 26;
+  --bs-link-color-rgb: 165, 180, 252;
+  --bs-link-hover-color-rgb: 34, 211, 238;
+  --bs-border-color: #{$glass-border};
+  --bs-emphasis-color: #ffffff;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(139, 92, 246, 0.35), transparent 50%),
+    radial-gradient(ellipse at 85% 20%, rgba(34, 211, 238, 0.2), transparent 45%),
+    radial-gradient(ellipse at 50% 100%, rgba(244, 114, 182, 0.15), transparent 50%),
+    $night;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Sora", "Inter", sans-serif;
+  color: #fff;
+}
+
+// Navigation
+.navbar.navbar-dark {
+  --bs-navbar-color: #{$muted};
+  --bs-navbar-hover-color: #fff;
+  --bs-navbar-active-color: #fff;
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #fff;
+  background-color: rgba(11, 11, 26, 0.55) !important;
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: inset 0 -1px 0 $glass-border;
+
+  .nav-link:hover {
+    text-decoration: none;
+  }
+}
+
+.navbar-brand {
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  background: linear-gradient(90deg, $violet, $cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .sub-nav {
   top: 56px;
+
+  .navbar-brand {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: rgba(20, 20, 40, 0.92);
+  --bs-dropdown-border-color: #{$glass-border};
+  --bs-dropdown-border-radius: 0.75rem;
+  --bs-dropdown-link-color: #{$text};
+  --bs-dropdown-link-hover-color: #fff;
+  --bs-dropdown-link-hover-bg: rgba(139, 92, 246, 0.25);
+  backdrop-filter: blur(14px);
+}
+
+// Hero
+.text-bg-dark {
+  background-color: transparent !important;
+  color: $text !important;
+}
+
+.display-4 {
+  font-weight: 700;
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, $violet, $cyan 55%, $pink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  color: $muted;
+}
+
+// Card grid
+main > .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-deck.mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.card {
+  --bs-card-bg: #{$glass};
+  --bs-card-border-color: #{$glass-border};
+  --bs-card-border-radius: 1.25rem;
+  --bs-card-inner-border-radius: 1.25rem;
+  --bs-card-cap-bg: transparent;
+  --bs-card-color: #{$text};
+  height: 100%;
+  margin-bottom: 0 !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 40px -20px rgba(0, 0, 0, 0.8);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 20px 50px -20px rgba(139, 92, 246, 0.55);
+  }
+}
+
+.card-header {
+  border-bottom: 0;
+  text-align: left;
+  padding-top: 1.25rem;
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+.card-body {
+  text-align: left;
+  padding-top: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+
+  ul {
+    margin-top: 0.5rem !important;
+  }
+
+  li + li {
+    margin-top: 0.6rem;
+  }
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-border-radius: 999px;
+  --bs-btn-font-size: 0.95rem;
+  --bs-btn-font-weight: 600;
+  --bs-btn-padding-x: 1.4rem;
+  background: linear-gradient(90deg, $violet, $cyan);
+  box-shadow: 0 6px 24px -8px rgba(139, 92, 246, 0.8);
+  transition: filter 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+}
+
+.btn-light {
+  background: linear-gradient(90deg, $violet, $cyan) !important;
+  border: 0 !important;
+  color: #fff !important;
+}
+
+.display-1 {
+  background: linear-gradient(90deg, $violet, $cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+hr {
+  border-top: 1px solid $glass-border;
+  opacity: 1;
+  margin-top: 3rem;
+}
+
+footer {
+  color: $muted;
+  font-size: 0.875rem;
 }
 
 .top-container {
