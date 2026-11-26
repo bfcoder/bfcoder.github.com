@@ -14,5 +14,9 @@
     "bootstrap": "^5.3.9",
     "sass": "^1.108.2",
     "typescript": "^6.0.3"
+  },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "fsevents": false
   }
 }
