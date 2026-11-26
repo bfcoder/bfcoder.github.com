@@ -1,7 +1,211 @@
 @import "bootstrap/dist/css/bootstrap.css";
 
+// Theme: Editorial
+// A printed-magazine feel: warm paper, ink-black serif type, hairline rules,
+// a narrow reading column and an oxblood accent.
+
+$paper: #f6f1e7;
+$paper-deep: #ede5d6;
+$ink: #1d1a16;
+$muted: #6b6257;
+$accent: #9b2c2c;
+$rule: #cfc4b2;
+
+$toggler-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2829, 26, 22, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+:root {
+  --bs-body-bg: #{$paper};
+  --bs-body-color: #{$ink};
+  --bs-body-font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --bs-body-font-size: 1.1rem;
+  --bs-body-line-height: 1.7;
+  --bs-dark-rgb: 246, 241, 231;
+  --bs-link-color-rgb: 155, 44, 44;
+  --bs-link-hover-color-rgb: 29, 26, 22;
+  --bs-border-color: #{$rule};
+  --bs-emphasis-color: #{$ink};
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fraunces", Georgia, serif;
+  color: $ink;
+}
+
+// Navigation
+.navbar.navbar-dark {
+  --bs-navbar-color: #{$muted};
+  --bs-navbar-hover-color: #{$accent};
+  --bs-navbar-active-color: #{$ink};
+  --bs-navbar-brand-color: #{$ink};
+  --bs-navbar-brand-hover-color: #{$accent};
+  --bs-navbar-toggler-border-color: #{$rule};
+  --bs-navbar-toggler-icon-bg: #{$toggler-dark};
+  box-shadow: inset 0 -1px 0 $ink;
+
+  .nav-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+.navbar-brand {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.875rem;
+}
+
 .sub-nav {
   top: 56px;
+
+  &.navbar.navbar-dark {
+    background-color: $paper-deep !important;
+  }
+
+  .navbar-brand {
+    width: 100%;
+    font-style: normal;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #{$paper};
+  --bs-dropdown-border-color: #{$ink};
+  --bs-dropdown-border-radius: 0;
+  --bs-dropdown-link-color: #{$ink};
+  --bs-dropdown-link-hover-color: #{$accent};
+  --bs-dropdown-link-hover-bg: #{$paper-deep};
+}
+
+// Hero
+.text-bg-dark {
+  color: $ink !important;
+}
+
+.display-4 {
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  margin-inline: auto;
+  padding-block: 1.5rem;
+  border-block: 1px solid $ink;
+}
+
+.lead {
+  font-style: italic;
+  color: $muted;
+  margin-top: 1rem;
+}
+
+// Reading column
+main > .container {
+  max-width: 46rem;
+}
+
+// Cards become article sections
+.card {
+  --bs-card-bg: transparent;
+  --bs-card-border-width: 0;
+  --bs-card-border-radius: 0;
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-padding-x: 0;
+  --bs-card-spacer-x: 0;
+  border-top: 2px solid $ink;
+}
+
+.card-header {
+  text-align: left;
+  border-bottom: 0;
+
+  h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}
+
+.card-body {
+  text-align: left;
+  padding-top: 0;
+
+  ul {
+    margin-top: 0.5rem !important;
+  }
+
+  li + li {
+    margin-top: 0.75rem;
+  }
+
+  li:only-child::first-letter {
+    font-family: "Fraunces", Georgia, serif;
+    float: left;
+    font-size: 3.4em;
+    line-height: 0.85;
+    padding: 0.08em 0.1em 0 0;
+    color: $accent;
+  }
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #{$ink};
+  --bs-btn-border-color: #{$ink};
+  --bs-btn-hover-color: #{$paper};
+  --bs-btn-hover-bg: #{$ink};
+  --bs-btn-hover-border-color: #{$ink};
+  --bs-btn-active-color: #{$paper};
+  --bs-btn-active-bg: #{$accent};
+  --bs-btn-active-border-color: #{$accent};
+  --bs-btn-border-radius: 0;
+  --bs-btn-font-size: 0.75rem;
+  --bs-btn-padding-y: 0.6rem;
+  --bs-btn-padding-x: 1.2rem;
+  font-family: var(--bs-body-font-family);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 0.75rem !important;
+}
+
+.btn-light {
+  --bs-btn-bg: #{$ink};
+  --bs-btn-color: #{$paper};
+  --bs-btn-border-color: #{$ink};
+  --bs-btn-hover-bg: #{$accent};
+  --bs-btn-hover-color: #{$paper};
+  --bs-btn-hover-border-color: #{$accent};
+  border-radius: 0 !important;
+}
+
+.text-light {
+  color: $ink !important;
+}
+
+.display-1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+}
+
+hr {
+  border-top: 1px solid $ink;
+  opacity: 1;
+  max-width: 46rem;
+  margin: 3rem auto 2rem;
+}
+
+footer {
+  color: $muted;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .top-container {
