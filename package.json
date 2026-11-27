@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.5",
     "astro": "^7.4.13",
-    "bootstrap": "^5.3.9",
-    "sass": "^1.108.2",
+    "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3"
   },
   "allowScripts": {
