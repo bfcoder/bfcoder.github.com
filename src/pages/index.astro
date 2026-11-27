@@ -2,139 +2,162 @@
 import Layout from '@layouts/Layout.astro';
 import Icon from '@components/Icon.astro';
 import ProjectCard from '@components/ProjectCard.astro';
+import TerminalWindow from '@components/TerminalWindow.astro';
 import { educationHtml, person, professionHtml, projects, skills, social, timeline } from '@data/site';
 
 const featured = projects.filter((p) => p.category === 'work' && p.links.length > 0).slice(0, 3);
 const yearsAtEmployer = new Date().getFullYear() - 2014;
-const stats = [
-  { value: `${yearsAtEmployer}+`, label: `years at ${person.employer.label}` },
-  { value: `${projects.length}`, label: 'projects' },
-  { value: 'BS', label: 'Computer Science, USU' },
+const techCount = new Set(projects.flatMap((p) => p.tech)).size;
+
+// neofetch-style system info, all taken from the site's own content.
+const info = [
+  ['Name', person.name],
+  ['Role', person.role],
+  ['Company', person.employer.label],
+  ['Since', 'Nov 2014'],
+  ['Education', 'BS Computer Science, USU'],
+  ['Stack', 'Rails, React, Ember, Phoenix'],
+  ['Projects', String(projects.length)],
 ];
+const logo = String.raw` _      __
+| |__  / _|
+| '_ \| |_
+| |_) |  _|
+|_.__/|_|`;
+
+const stats = [
+  { value: `${yearsAtEmployer}+`, label: `years @ ${person.employer.label.toLowerCase()}` },
+  { value: String(projects.length), label: 'projects' },
+  { value: String(techCount), label: 'technologies' },
+];
+
+// Decorative short "commit hashes" for the git-log timeline.
+const hash = (s: string) => {
+  let h = 2166136261;
+  for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7);
+};
+
+// GNU ls quotes names containing spaces.
+const lsName = (name: string) => (name.includes(' ') ? `'${name}'` : name);
 ---
 
 <Layout title='The bfcoder'>
   <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_70%_0%,var(--color-brand-100),transparent)] dark:bg-[radial-gradient(ellipse_60%_50%_at_70%_0%,color-mix(in_oklch,var(--color-brand-700)_35%,transparent),transparent)]"></div>
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-zinc-200)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-zinc-200)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)] dark:bg-[linear-gradient(to_right,var(--color-zinc-800)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-zinc-800)_1px,transparent_1px)]"></div>
-
-    <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-20 sm:px-6 md:pt-24 lg:grid-cols-[1.2fr_1fr]">
+  <section class="relative overflow-hidden border-b border-term-line">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_75%_10%,rgb(57_255_122/0.10),transparent)]"></div>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pt-14 pb-16 sm:px-6 md:pt-20 lg:grid-cols-[1.15fr_1fr]">
       <div>
-        <p class="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-400">
-          <span class="size-2 rounded-full bg-brand-500"></span>
-          {person.role} at {person.employer.label}
-        </p>
-        <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-white">
-          I am <span class="bg-gradient-to-r from-brand-600 to-sky-500 bg-clip-text text-transparent dark:from-brand-400 dark:to-sky-400">{person.handle}</span>,<br />
-          aka {person.name}.
+        <p class="text-sm text-term-dim">// {person.role.toLowerCase()} @ {person.employer.label.toLowerCase()}</p>
+        <p class="prompt mt-6 text-sm text-term-text" aria-hidden="true">whoami</p>
+        <h1 class="cursor mt-2 text-3xl leading-tight font-extrabold text-term-green text-glow sm:text-4xl lg:text-5xl">
+          I am {person.handle},<br />aka {person.name}.
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{person.tagline}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/projects" class="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-brand-300">
-            See my projects <Icon name="arrow" size={16} />
+        <p class="mt-6 max-w-xl text-term-text before:text-term-dim before:content-['>_']">{person.tagline}</p>
+        <div class="mt-8 flex flex-wrap gap-3 text-sm">
+          <a href="/projects" class="inline-flex items-center gap-2 border border-term-green bg-term-green px-4 py-2.5 font-bold text-term-bg transition hover:bg-transparent hover:text-term-green">
+            [ cd ~/projects <Icon name="arrow" size={14} /> ]
           </a>
-          <a href={social.github.href} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:hover:border-zinc-500">
-            <Icon name="github" size={16} /> GitHub
+          <a href={social.github.href} target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-term-line px-4 py-2.5 text-term-text transition hover:border-term-green hover:text-term-green">
+            [ <Icon name="github" size={14} /> github ]
           </a>
         </div>
       </div>
 
-      <!-- Code card -->
-      <div class="relative">
-        <div aria-hidden="true" class="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-brand-500/30 to-sky-500/20 blur-2xl"></div>
-        <div class="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl ring-1 ring-white/5">
-          <div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-            <span class="size-3 rounded-full bg-red-400/80"></span>
-            <span class="size-3 rounded-full bg-amber-400/80"></span>
-            <span class="size-3 rounded-full bg-emerald-400/80"></span>
-            <span class="ml-3 font-mono text-xs text-zinc-500">about.ts</span>
+      <TerminalWindow title={`${person.handle}@web: ~ — neofetch`}>
+        <p class="prompt text-term-text" aria-hidden="true">neofetch</p>
+        <div class="mt-3 flex flex-col gap-5 sm:flex-row">
+          <pre aria-hidden="true" class="shrink-0 font-bold leading-5 text-term-green text-glow">{logo}</pre>
+          <div class="min-w-0 text-[13px] leading-6">
+            <p class="font-bold"><span class="text-term-green">{person.handle}</span><span class="text-term-dim">@</span><span class="text-term-green">web</span></p>
+            <p aria-hidden="true" class="text-term-dim">{'-'.repeat(person.handle.length + 4)}</p>
+            <dl>
+            {info.map(([k, v]) => (
+              <div class="flex gap-2">
+                <dt class="shrink-0 font-bold text-term-amber">{k}:</dt>
+                <dd class="truncate">{v}</dd>
+              </div>
+            ))}
+            </dl>
+            <div aria-hidden="true" class="mt-3 flex">
+              {['bg-term-bg', 'bg-term-red', 'bg-term-green', 'bg-term-amber', 'bg-term-cyan', 'bg-term-magenta', 'bg-term-text'].map((c) => <span class:list={['h-4 w-6', c]}></span>)}
+            </div>
           </div>
-          <pre class="overflow-x-auto p-5 font-mono text-[13px] leading-6 text-zinc-300"><code><span class="text-sky-400">const</span> <span class="text-brand-300">bfcoder</span> = {'{'}
-  name: <span class="text-amber-300">'{person.name}'</span>,
-  role: <span class="text-amber-300">'{person.role}'</span>,
-  company: <span class="text-amber-300">'{person.employer.label}'</span>,
-  since: <span class="text-violet-300">2014</span>,
-  education: <span class="text-amber-300">'BS CS, USU'</span>,
-  stack: [
-    <span class="text-amber-300">'Rails'</span>, <span class="text-amber-300">'React'</span>,
-    <span class="text-amber-300">'Ember'</span>, <span class="text-amber-300">'Phoenix'</span>,
-  ],
-{'}'};</code></pre>
         </div>
-      </div>
+      </TerminalWindow>
     </div>
   </section>
 
   <!-- Stats -->
-  <section class="border-y border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
-    <dl class="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-zinc-200 px-4 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-6 dark:divide-zinc-800">
+  <section class="border-b border-term-line bg-term-panel">
+    <dl class="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-term-line px-4 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-6">
       {stats.map((s) => (
-        <div class="flex flex-col items-center gap-1 py-8">
-          <dt class="order-2 text-sm text-zinc-500">{s.label}</dt>
-          <dd class="order-1 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">{s.value}</dd>
+        <div class="flex flex-col items-center gap-1 py-7">
+          <dt class="order-2 text-xs text-term-dim"># {s.label}</dt>
+          <dd class="order-1 text-3xl font-extrabold text-term-green text-glow">{s.value}</dd>
         </div>
       ))}
     </dl>
   </section>
 
-  <!-- About + timeline -->
+  <!-- About + git log -->
   <section id="about" class="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2">
     <div>
-      <h2 class="text-sm font-semibold tracking-widest text-brand-600 uppercase dark:text-brand-400">About</h2>
-      <p class="mt-3 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Profession</p>
-      <p class="prose-links mt-6 text-lg leading-relaxed" set:html={professionHtml} />
-      <p class="mt-10 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Education</p>
-      <p class="prose-links mt-6 text-lg leading-relaxed" set:html={educationHtml} />
+      <p class="prompt text-sm text-term-dim" aria-hidden="true">cat about.md</p>
+      <h2 class="mt-4 text-2xl font-bold text-term-green text-glow before:text-term-dim before:content-['#_']">Profession</h2>
+      <p class="prose-links mt-4 leading-7" set:html={professionHtml} />
+      <h2 class="mt-10 text-2xl font-bold text-term-green text-glow before:text-term-dim before:content-['#_']">Education</h2>
+      <p class="prose-links mt-4 leading-7" set:html={educationHtml} />
     </div>
 
-    <div>
-      <h2 class="text-sm font-semibold tracking-widest text-brand-600 uppercase dark:text-brand-400">Timeline</h2>
-      <ol class="relative mt-6 space-y-8 border-l border-zinc-200 pl-8 dark:border-zinc-800">
+    <TerminalWindow title="~/career — git log">
+      <p class="prompt text-term-text" aria-hidden="true">git log</p>
+      <h2 class="sr-only">Timeline</h2>
+      <ol class="mt-4 space-y-6">
         {timeline.map((t, i) => (
-          <li class="relative">
-            <span class:list={[
-              'absolute top-1.5 -left-[39px] size-3.5 rounded-full border-2 border-white ring-1 dark:border-zinc-950',
-              i === 0 ? 'bg-brand-500 ring-brand-500' : 'bg-zinc-300 ring-zinc-300 dark:bg-zinc-700 dark:ring-zinc-700',
-            ]}></span>
-            <p class="font-mono text-xs tracking-wide text-zinc-500 uppercase">{t.when}</p>
-            <p class="mt-1 text-lg font-semibold text-zinc-900 dark:text-white">{t.title} <span class="font-normal text-zinc-500">· {t.org}</span></p>
-            <p class="mt-1 text-zinc-600 dark:text-zinc-400">{t.detail}</p>
+          <li>
+            <p>
+              <span class="text-term-amber">commit {hash(t.org + t.when)}</span>
+              {i === 0 && <span class="text-term-amber"> (<span class="font-bold text-term-cyan">HEAD -&gt; </span><span class="font-bold text-term-green">career</span>)</span>}
+            </p>
+            <p class="text-term-dim">Date:&nbsp;&nbsp;&nbsp;{t.when}</p>
+            <p class="mt-2 pl-4 font-bold text-term-text">{t.title} @ {t.org}</p>
+            <p class="pl-4 text-term-dim">{t.detail}</p>
           </li>
         ))}
       </ol>
-    </div>
+    </TerminalWindow>
   </section>
 
-  <!-- Skills -->
-  <section id="experience" class="bg-zinc-50 dark:bg-zinc-900/50">
+  <!-- Skills as ls output -->
+  <section id="experience" class="border-y border-term-line bg-term-panel">
     <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <h2 class="text-sm font-semibold tracking-widest text-brand-600 uppercase dark:text-brand-400">Experience</h2>
-      <p class="mt-3 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Tools I have worked with</p>
-      <ul class="mt-10 grid grid-flow-dense gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {skills.map((s, i) => (
-          <li class:list={[
-            'rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900',
-            s.includes && 'sm:col-span-2 lg:row-span-2',
-            // Let the last tile fill the remaining cells so the grid has no hole.
-            i === skills.length - 1 && 'sm:col-span-2',
-          ]}>
-            {s.href
-              ? <a href={s.href} target="_blank" rel="noopener" class="group inline-flex items-center gap-1.5 font-semibold text-zinc-900 hover:text-brand-700 dark:text-white dark:hover:text-brand-400">{s.name}<Icon name="external" size={14} class="opacity-0 transition group-hover:opacity-60" /></a>
-              : <span class="font-semibold text-zinc-900 dark:text-white">{s.name}</span>}
-            {s.includes && (
-              <>
-                <p class="mt-2 text-sm text-zinc-500">including</p>
-                <ul class="mt-3 flex flex-wrap gap-2">
-                  {s.includes.map((x) => (
-                    <li><a href={x.href} target="_blank" rel="noopener" class="inline-block rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-700 transition hover:bg-brand-100 hover:text-brand-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-brand-700/30 dark:hover:text-brand-300">{x.label}</a></li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </li>
-        ))}
+      <p class="prompt text-sm text-term-dim" aria-hidden="true">ls -F ~/skills</p>
+      <h2 class="mt-4 text-2xl font-bold text-term-green text-glow before:text-term-dim before:content-['#_']">Tools I have worked with</h2>
+      <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
+        {skills.map((s) => {
+          const name = s.includes ? `${s.name.toLowerCase()}/` : lsName(s.name);
+          const color = s.includes ? 'text-term-cyan font-bold' : s.href ? 'text-term-green' : 'text-term-text';
+          return (
+            <li>
+              {s.href
+                ? <a href={s.href} target="_blank" rel="noopener" class:list={[color, 'underline decoration-dotted underline-offset-4 hover:text-term-amber']}>{name}</a>
+                : <span class={color}>{name}</span>}
+            </li>
+          );
+        })}
       </ul>
+      {skills.filter((s) => s.includes).map((s) => (
+        <div class="mt-10">
+          <p class="prompt text-sm text-term-dim" aria-hidden="true">ls ~/skills/{s.name.toLowerCase()}/</p>
+          <p class="sr-only">{s.name}, including:</p>
+          <ul class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            {s.includes!.map((x) => (
+              <li><a href={x.href} target="_blank" rel="noopener" class="text-term-green underline decoration-dotted underline-offset-4 hover:text-term-amber">{x.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -142,10 +165,10 @@ const stats = [
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h2 class="text-sm font-semibold tracking-widest text-brand-600 uppercase dark:text-brand-400">Recent work</h2>
-        <p class="mt-3 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Featured projects</p>
+        <p class="prompt text-sm text-term-dim" aria-hidden="true">ls -t ~/projects | head -3</p>
+        <h2 class="mt-4 text-2xl font-bold text-term-green text-glow before:text-term-dim before:content-['#_']">Featured projects</h2>
       </div>
-      <a href="/projects" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-600 dark:text-brand-400">All {projects.length} projects <Icon name="arrow" size={16} /></a>
+      <a href="/projects" class="inline-flex items-center gap-1.5 text-sm text-term-amber hover:text-term-green">cd ~/projects <span class="text-term-dim"># all {projects.length}</span> <Icon name="arrow" size={14} /></a>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {featured.map((p) => <ProjectCard project={p} />)}

@@ -1,16 +1,26 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Icon from '@components/Icon.astro';
+import TerminalWindow from '@components/TerminalWindow.astro';
 ---
 
 <Layout title='Page Not Found'>
-  <section class="mx-auto flex max-w-xl flex-col items-center px-4 py-32 text-center">
-    <p class="font-mono text-sm font-semibold text-brand-600 dark:text-brand-400">404</p>
-    <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl dark:text-white">Oops! Page not found</h1>
-    <p class="mt-4 text-lg text-zinc-600 dark:text-zinc-400">The page you're looking for doesn't exist or has been moved.</p>
-    <div class="mt-10 flex flex-wrap justify-center gap-3">
-      <a href="/" class="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-brand-300">Go Home</a>
-      <a href="/projects" class="inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-3 text-sm font-semibold text-zinc-900 transition hover:border-zinc-400 dark:border-zinc-700 dark:text-white">Browse projects <Icon name="arrow" size={16} /></a>
-    </div>
+  <section class="mx-auto max-w-2xl px-4 py-24 sm:px-6">
+    <TerminalWindow title="bash — 404">
+      <p class="prompt text-term-text" aria-hidden="true">cd <span data-path>/missing-page</span></p>
+      <p class="text-term-red" aria-hidden="true">bash: cd: <span data-path>/missing-page</span>: No such file or directory</p>
+      <h1 class="mt-6 text-3xl font-extrabold text-term-green text-glow">404: Oops! Page not found</h1>
+      <p class="mt-3 text-term-text">The page you're looking for doesn't exist or has been moved.</p>
+      <p class="prompt mt-6 flex flex-wrap items-center gap-3">
+        <a href="/" class="border border-term-green bg-term-green px-3 py-1.5 font-bold text-term-bg hover:bg-transparent hover:text-term-green">cd ~</a>
+        <a href="/projects" class="border border-term-line px-3 py-1.5 text-term-text hover:border-term-green hover:text-term-green">cd ~/projects</a>
+        <span class="cursor text-term-green" aria-hidden="true"></span>
+      </p>
+    </TerminalWindow>
   </section>
 </Layout>
+
+<script>
+  // Echo the path the visitor actually asked for.
+  const path = decodeURIComponent(location.pathname);
+  document.querySelectorAll('[data-path]').forEach((el) => { el.textContent = path; });
+</script>

@@ -1,41 +1,122 @@
 @import "tailwindcss";
 
 /*
- * Redesign (Tailwind): a clean developer portfolio. Neutral zinc surfaces,
- * a teal accent, Inter for text and JetBrains Mono for code-flavoured
- * details. Follows the visitor's light/dark preference.
+ * Redesign (Tailwind, terminal): the portfolio layout dressed as a shell.
+ * Phosphor green on near-black with amber prompts, JetBrains Mono
+ * everywhere, a faint CRT scanline overlay and a blinking cursor.
  */
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--font-mono);
 
-  --color-brand-50: oklch(0.98 0.02 180);
-  --color-brand-100: oklch(0.95 0.05 180);
-  --color-brand-300: oklch(0.85 0.12 180);
-  --color-brand-400: oklch(0.78 0.13 181);
-  --color-brand-500: oklch(0.70 0.13 182);
-  --color-brand-600: oklch(0.60 0.11 184);
-  --color-brand-700: oklch(0.51 0.09 186);
+  --color-term-bg: #070a07;
+  --color-term-panel: #0c120c;
+  --color-term-raised: #111a11;
+  --color-term-line: #1d3a24;
+  --color-term-dim: #4f8a5f;
+  --color-term-text: #b8f5c8;
+  --color-term-green: #39ff7a;
+  --color-term-amber: #ffb000;
+  --color-term-cyan: #5fd7ff;
+  --color-term-magenta: #ff79c6;
+  --color-term-red: #ff5f56;
+
+  --animate-blink: blink 1.1s steps(1) infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/* Soft phosphor glow for headings and highlights. */
+@utility text-glow {
+  text-shadow: 0 0 6px rgb(57 255 122 / 0.45), 0 0 18px rgb(57 255 122 / 0.15);
+}
+
+/* Prompt prefix: <h2 class="prompt">…</h2> renders "$ …". */
+@utility prompt {
+  &::before {
+    content: "$ ";
+    color: var(--color-term-amber);
+  }
+}
+
+/* Block cursor appended after an element's text. */
+@utility cursor {
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.2em;
+    vertical-align: -0.12em;
+    background: currentColor;
+    animation: var(--animate-blink);
+  }
+}
+
+/* Authored HTML (about text, project descriptions) with inline links. */
+@utility prose-links {
+  & a {
+    color: var(--color-term-amber);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--color-term-green);
+      text-decoration-style: solid;
+    }
+  }
 }
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white font-sans text-zinc-700 antialiased dark:bg-zinc-950 dark:text-zinc-300;
+    @apply bg-term-bg font-mono text-[0.95rem] leading-relaxed text-term-text antialiased;
+  }
+
+  /* CRT scanlines over everything, ignoring pointer events. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      rgb(0 0 0 / 0.16) 3px
+    );
   }
 
   ::selection {
-    @apply bg-brand-300 text-zinc-900;
+    @apply bg-term-green text-term-bg;
   }
-}
 
-/* Inline links inside authored prose (project descriptions, about text). */
-@utility prose-links {
-  & a {
-    @apply font-medium text-brand-700 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 dark:text-brand-400 dark:decoration-brand-700;
+  :focus-visible {
+    outline: 1px dashed var(--color-term-green);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
