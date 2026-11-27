@@ -1,0 +1,24 @@
+---
+// A terminal window frame: title bar with traffic lights and a title,
+// then a monospace body. Used for the hero and other "command output".
+
+interface Props {
+  title: string;
+  class?: string;
+  bodyClass?: string;
+}
+
+const { title, class: className, bodyClass } = Astro.props;
+---
+
+<div class:list={['overflow-hidden rounded-lg border border-term-line bg-term-panel shadow-[0_0_0_1px_rgb(57_255_122/0.04),0_20px_60px_-20px_rgb(57_255_122/0.25)]', className]}>
+  <div class="flex items-center gap-2 border-b border-term-line bg-term-raised px-4 py-2.5">
+    <span class="size-3 rounded-full bg-term-red/80"></span>
+    <span class="size-3 rounded-full bg-term-amber/80"></span>
+    <span class="size-3 rounded-full bg-term-green/80"></span>
+    <span class="ml-3 truncate text-xs text-term-dim">{title}</span>
+  </div>
+  <div class:list={['p-5 text-sm leading-6', bodyClass]}>
+    <slot />
+  </div>
+</div>
